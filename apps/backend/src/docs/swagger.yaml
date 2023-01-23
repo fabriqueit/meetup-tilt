@@ -1,0 +1,193 @@
+basePath: /
+definitions:
+  controllers.PageInput:
+    properties:
+      body:
+        type: string
+      title:
+        type: string
+    required:
+    - body
+    - title
+    type: object
+  models.Page:
+    properties:
+      body:
+        description: Page body
+        type: string
+      createdAt:
+        type: string
+      id:
+        description: Primary key
+        type: integer
+      title:
+        description: Page title
+        type: string
+      updatedAt:
+        type: string
+    type: object
+info:
+  contact:
+    email: support@support
+    name: Support
+    url: http://www.swagger.io/support
+  description: This is the backend api for a meetup.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Backend API
+  version: "1.0"
+paths:
+  /pages:
+    get:
+      consumes:
+      - application/json
+      description: get pages
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Page'
+            type: array
+      summary: List pages
+      tags:
+      - pages
+    post:
+      consumes:
+      - application/json
+      description: post an page
+      parameters:
+      - description: Page
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.PageInput'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            type: int
+        "400":
+          description: Bad Request
+          schema:
+            type: int
+      summary: Create an page
+      tags:
+      - pages
+  /pages/{title}:
+    delete:
+      consumes:
+      - application/json
+      description: delete an page
+      parameters:
+      - description: Page Title
+        in: path
+        name: title
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Page'
+        "400":
+          description: Bad Request
+          schema:
+            type: int
+      summary: Delete an page
+      tags:
+      - pages
+    get:
+      consumes:
+      - application/json
+      description: get page by Title
+      parameters:
+      - description: Page title
+        in: path
+        name: title
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Page'
+        "404":
+          description: Not Found
+          schema:
+            type: int
+      summary: Show an page
+      tags:
+      - pages
+    patch:
+      consumes:
+      - application/json
+      description: update an page
+      parameters:
+      - description: Page ID
+        in: path
+        name: title
+        required: true
+        type: string
+      - description: Page
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.PageInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Page'
+        "500":
+          description: Internal Server Error
+          schema:
+            type: int
+      summary: Update an page
+      tags:
+      - pages
+    put:
+      consumes:
+      - application/json
+      description: update an page
+      parameters:
+      - description: Page Title
+        in: path
+        name: title
+        required: true
+        type: string
+      - description: Page
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/controllers.PageInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Page'
+        "400":
+          description: Bad Request
+          schema:
+            type: int
+      summary: Update an page
+      tags:
+      - pages
+swagger: "2.0"

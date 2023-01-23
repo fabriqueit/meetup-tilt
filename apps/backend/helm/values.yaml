@@ -1,0 +1,38 @@
+---
+image: backend
+tag: tilt
+replicas: 1
+
+ingress:
+  annotations:
+      cert-manager.io/cluster-issuer: letsencrypt
+  host: backend
+  tls: true
+  paths:
+    - route: /
+
+pdb:
+  minAvailable: 50%
+
+autoscaling:
+  min: 1
+  max: 2
+  cpu: 50
+  memory: 200Mi
+
+deployment:
+  containerPort: 8080
+  livenessProbePath: /health
+  readinessProbePath: /health
+
+pullPolicy: Never
+
+service: {}
+
+config:
+  configmaps:
+    - name: main
+      type: env
+      data:
+        DB_HOST: postgresql
+        DB_NAME: meetup

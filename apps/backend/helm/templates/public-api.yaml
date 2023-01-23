@@ -1,0 +1,10 @@
+---
+{{ include "app.service" . }}
+---
+{{ include "app.deployment" . }}
+---
+{{ include "app.ingress" . }}
+---
+{{ include "app.serviceaccount" . }}
+---
+{{ include "config.configmap" . }}

@@ -1,0 +1,12 @@
+apiVersion: v2
+name: backend
+description: backend
+type: application
+version: 0.1.0
+dependencies:
+  - name: app
+    repository: https://gitlab.com/api/v4/projects/37350849/packages/helm/stable
+    version: "0.1.5"
+  - name: config
+    repository: https://gitlab.com/api/v4/projects/37350849/packages/helm/stable
+    version: "0.1.0"

@@ -1,0 +1,12 @@
+# Artifacts
+build
+dist
+bin
+data
+
+# IDEs
+.vscode
+.idea
+
+apps/**/helm/charts
+apps/**/helm/Chart.lock

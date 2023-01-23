@@ -1,0 +1,27 @@
+---
+image: frontend
+tag: latest
+replicas: 1
+
+pdb:
+  minAvailable: 50%
+
+autoscaling:
+  min: 1
+  max: 2
+  cpu: 50
+  memory: 200Mi
+
+deployment:
+  containerPort: 8080
+  livenessProbePath: /health
+  readinessProbePath: /health
+
+service: {}
+
+config:
+  configmaps:
+    - name: main
+      type: env
+      data:
+        BACKEND_URL: backend:8080
