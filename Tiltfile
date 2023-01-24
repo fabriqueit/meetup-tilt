@@ -2,7 +2,6 @@
 # https://docs.tilt.dev/api.html#api.version_settings
 version_settings(constraint='>=0.30.0')
 load('ext://helm_resource', 'helm_resource', 'helm_repo')
-load('ext://restart_process', 'docker_build_with_restart')
 
 # All apps launched by Tilt
 apps = {
@@ -13,12 +12,18 @@ apps = {
 # backend
 if apps['backend']:
   local_resource(
-    'backend-compilation',
-    'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 cd apps/backend/src && go build -o ../build/backend ./',
-    deps=['apps/backend/src'],
+    'backend-swag',
+    'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 cd apps/backend/src && swag init',
+    deps=['apps/backend/src/controllers', 'apps/backend/src/models', 'apps/backend/src/constant.go', 'apps/backend/src/main.go'],
     labels=['backend'],
   )
-  docker_build_with_restart(
+  local_resource(
+    'backend-build',
+    'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 cd apps/backend/src && go build -o ../build/backend ./ ',
+    deps=['apps/backend/src/docs', 'apps/backend/src/controllers', 'apps/backend/src/models', 'apps/backend/src/constant.go', 'apps/backend/src/main.go'],
+    labels=['backend'],
+  )
+  docker_build(
     'backend',
     context='./apps/backend/',
     dockerfile='./apps/backend/Dockerfile',
@@ -51,21 +56,20 @@ if apps['backend']:
 if apps['frontend']:
   local_resource(
     'frontend-compilation',
-    'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 cd apps/frontend && go build -o build/frontend ./',
-    deps=['apps/frontend/main.go', 'apps/frontend/constants.go',],
-    resource_deps = ['deploy'],
+    'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 cd apps/frontend/src && go build -o ../build/frontend ./',
+    deps=['apps/frontend/src',],
     labels=['frontend'],
   )
-  docker_build_with_restart(
+  docker_build(
     'frontend-image',
     context='./apps/frontend/',
     entrypoint=['/app/frontend'],
     dockerfile='./apps/frontend/Dockerfile',
     platform='linux/amd64',
-    only=['./build', './templates',],
+    only=['./build', './src/templates',],
     live_update=[
       sync('./apps/frontend/build', '/app'),
-      sync('./apps/frontend/templates', '/app/templates'),
+      sync('./apps/frontend/src/templates', '/app/templates'),
     ],
   )
   local_resource(

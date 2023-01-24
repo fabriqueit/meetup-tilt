@@ -14,18 +14,14 @@ ingress:
 pdb:
   minAvailable: 50%
 
-autoscaling:
-  min: 1
-  max: 2
-  cpu: 50
-  memory: 200Mi
+autoscaling: {}
 
 deployment:
   containerPort: 8080
   livenessProbePath: /health
   readinessProbePath: /health
 
-pullPolicy: Never
+pullPolicy: Always
 
 service: {}
 
@@ -35,4 +31,5 @@ config:
       type: env
       data:
         DB_HOST: postgresql
+        DB_USER: postgres
         DB_NAME: meetup

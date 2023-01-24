@@ -14,8 +14,8 @@ func RegisterRoutes(router *gin.Engine) {
 		page.GET("/", GetPage)
 		page.POST("/", PostPage)
 		page.DELETE("/:title", DeletePage)
-		page.PATCH("/:title", PatchPage)
-		page.PUT("/:title", PutPage)
+		// page.PATCH("/:title", PatchPage)
+		// page.PUT("/:title", PutPage)
 	}
 
 	// Add a healh check endpoint

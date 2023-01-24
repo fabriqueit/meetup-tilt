@@ -61,7 +61,7 @@ const docTemplate = `{
                 "tags": [
                     "pages"
                 ],
-                "summary": "Create an page",
+                "summary": "Create an awsome page",
                 "parameters": [
                     {
                         "description": "Page",
@@ -101,7 +101,7 @@ const docTemplate = `{
                 "tags": [
                     "pages"
                 ],
-                "summary": "Show an page",
+                "summary": "Show a page",
                 "parameters": [
                     {
                         "type": "string",
@@ -127,7 +127,7 @@ const docTemplate = `{
                 }
             },
             "put": {
-                "description": "update an page",
+                "description": "update a page",
                 "consumes": [
                     "application/json"
                 ],
@@ -137,7 +137,7 @@ const docTemplate = `{
                 "tags": [
                     "pages"
                 ],
-                "summary": "Update an page",
+                "summary": "Update a page",
                 "parameters": [
                     {
                         "type": "string",
@@ -172,7 +172,7 @@ const docTemplate = `{
                 }
             },
             "delete": {
-                "description": "delete an page",
+                "description": "delete a page",
                 "consumes": [
                     "application/json"
                 ],
@@ -182,7 +182,7 @@ const docTemplate = `{
                 "tags": [
                     "pages"
                 ],
-                "summary": "Delete an page",
+                "summary": "Delete a page",
                 "parameters": [
                     {
                         "type": "string",
@@ -208,7 +208,7 @@ const docTemplate = `{
                 }
             },
             "patch": {
-                "description": "update an page",
+                "description": "update a page",
                 "consumes": [
                     "application/json"
                 ],
@@ -218,7 +218,7 @@ const docTemplate = `{
                 "tags": [
                     "pages"
                 ],
-                "summary": "Update an page",
+                "summary": "Update a page",
                 "parameters": [
                     {
                         "type": "string",

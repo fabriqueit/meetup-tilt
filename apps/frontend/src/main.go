@@ -46,6 +46,10 @@ func AboutHandler(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "index", GetTitleAndBody(backend, "about"))
 }
 
+func TestHandler(w http.ResponseWriter, r *http.Request) {
+	renderTemplate(w, "index", GetTitleAndBody(backend, "test3"))
+}
+
 func HealthHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
@@ -59,6 +63,7 @@ func main() {
 
 	http.HandleFunc("/", IndexHandler)
 	http.HandleFunc("/about/", AboutHandler)
+	http.HandleFunc("/test/", TestHandler)
 	http.HandleFunc("/health", HealthHandler)
 	log.Fatal(http.ListenAndServe(httpAddress+":"+httpPort, nil))
 }

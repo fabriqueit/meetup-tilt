@@ -78,14 +78,14 @@ paths:
           description: Bad Request
           schema:
             type: int
-      summary: Create an page
+      summary: Create an awsome page
       tags:
       - pages
   /pages/{title}:
     delete:
       consumes:
       - application/json
-      description: delete an page
+      description: delete a page
       parameters:
       - description: Page Title
         in: path
@@ -103,7 +103,7 @@ paths:
           description: Bad Request
           schema:
             type: int
-      summary: Delete an page
+      summary: Delete a page
       tags:
       - pages
     get:
@@ -127,13 +127,13 @@ paths:
           description: Not Found
           schema:
             type: int
-      summary: Show an page
+      summary: Show a page
       tags:
       - pages
     patch:
       consumes:
       - application/json
-      description: update an page
+      description: update a page
       parameters:
       - description: Page ID
         in: path
@@ -157,13 +157,13 @@ paths:
           description: Internal Server Error
           schema:
             type: int
-      summary: Update an page
+      summary: Update a page
       tags:
       - pages
     put:
       consumes:
       - application/json
-      description: update an page
+      description: update a page
       parameters:
       - description: Page Title
         in: path
@@ -187,7 +187,7 @@ paths:
           description: Bad Request
           schema:
             type: int
-      summary: Update an page
+      summary: Update a page
       tags:
       - pages
 swagger: "2.0"

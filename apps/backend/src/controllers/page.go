@@ -28,7 +28,7 @@ func GetPage(c *gin.Context) {
 }
 
 // PostPage godoc
-// @Summary 		Create an page
+// @Summary 		Create an awsome page
 // @Description post an page
 // @Tags 				pages
 // @Accept 			json
@@ -53,7 +53,7 @@ func PostPage(c *gin.Context) {
 }
 
 // GetPageByTitle godoc
-// @Summary 		Show an page
+// @Summary 		Show a page
 // @Description get page by Title
 // @Tags 				pages
 // @Accept 			json
@@ -74,8 +74,8 @@ func GetPageByTitle(c *gin.Context) {
 }
 
 // DeletePage godoc
-// @Summary 		Delete an page
-// @Description delete an page
+// @Summary 		Delete a page
+// @Description delete a page
 // @Tags 				pages
 // @Accept 			json
 // @Produce 		json
@@ -97,8 +97,8 @@ func DeletePage(c *gin.Context) {
 }
 
 // PatchPage godoc
-// @Summary 		Update an page
-// @Description update an page
+// @Summary 		Update a page
+// @Description update a page
 // @Tags 				pages
 // @Accept 			json
 // @Produce 		json
@@ -111,7 +111,7 @@ func PatchPage(c *gin.Context) {
 	var page models.Page
 
 	if err := models.DB.Where("title = ?", c.Param("title")).First(&page).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Page not found!"})
 		return
 	}
 
@@ -128,8 +128,8 @@ func PatchPage(c *gin.Context) {
 }
 
 // PutPage godoc
-// @Summary 		Update an page
-// @Description update an page
+// @Summary 		Update a page
+// @Description update a page
 // @Tags 				pages
 // @Accept 			json
 // @Produce 		json
