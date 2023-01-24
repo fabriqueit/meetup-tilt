@@ -2,6 +2,8 @@
 # https://docs.tilt.dev/api.html#api.version_settings
 version_settings(constraint='>=0.30.0')
 load('ext://helm_resource', 'helm_resource', 'helm_repo')
+# load docker_build_with_restart
+load('ext://restart_process', 'docker_build_with_restart')
 
 # All apps launched by Tilt
 apps = {
@@ -14,22 +16,22 @@ if apps['backend']:
   local_resource(
     'backend-swag',
     'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 cd apps/backend/src && swag init',
-    deps=['apps/backend/src/controllers', 'apps/backend/src/models', 'apps/backend/src/constant.go', 'apps/backend/src/main.go'],
+    deps=['apps/backend/src/controllers', 'apps/backend/src/models', 'apps/backend/src/main.go', 'apps/backend/src/utils'],
     labels=['backend'],
   )
   local_resource(
     'backend-build',
     'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 cd apps/backend/src && go build -o ../build/backend ./ ',
-    deps=['apps/backend/src/docs', 'apps/backend/src/controllers', 'apps/backend/src/models', 'apps/backend/src/constant.go', 'apps/backend/src/main.go'],
+    deps=['apps/backend/src/docs'],
     labels=['backend'],
   )
-  docker_build(
-    'backend',
+  docker_build_with_restart(
+    'backend-image',
     context='./apps/backend/',
     dockerfile='./apps/backend/Dockerfile',
     entrypoint=['/app/backend'],
-    only=['./build'],
     platform='linux/amd64',
+    only=['./build',],
     live_update=[
       sync('./apps/backend/build', '/app'),
     ],
@@ -48,23 +50,24 @@ if apps['backend']:
     flags=[
       '-f', 'apps/backend/helm/values.yaml',
     ],
-    image_deps=['backend'],
+    image_deps=['backend-image'],
     image_keys=[('image', 'tag')],
+    deps=['apps/backend/helm/values.yaml'],
   )
 
 # frontend
 if apps['frontend']:
   local_resource(
-    'frontend-compilation',
+    'frontend-build',
     'CGO_ENABLED=0 GOOS=linux GOARCH=amd64 cd apps/frontend/src && go build -o ../build/frontend ./',
     deps=['apps/frontend/src',],
     labels=['frontend'],
   )
-  docker_build(
+  docker_build_with_restart(
     'frontend-image',
     context='./apps/frontend/',
-    entrypoint=['/app/frontend'],
     dockerfile='./apps/frontend/Dockerfile',
+    entrypoint=['/app/frontend'],
     platform='linux/amd64',
     only=['./build', './src/templates',],
     live_update=[
@@ -88,6 +91,7 @@ if apps['frontend']:
     ],
     image_deps=['frontend-image'],
     image_keys=[('image', 'tag')],
+    deps=['apps/frontend/helm/values.yaml'],
   )
 
 # Postgresql

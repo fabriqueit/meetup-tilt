@@ -4,4 +4,4 @@ WORKDIR /app
 
 COPY build ./
 
-CMD ["./backend"]
+ENTRYPOINT ["./backend"]

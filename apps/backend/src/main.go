@@ -31,19 +31,19 @@ func defaultRouter() http.Handler {
 	return router
 }
 
-// @title           Backend API
-// @version         1.0
-// @description     This is the backend api for a meetup.
-// @termsOfService  http://swagger.io/terms/
+// @title          Backend API
+// @version        1.0
+// @description    This is the backend api for a meetup.
+// @termsOfService http://swagger.io/terms/
 
-// @contact.name   Support
-// @contact.url    http://www.swagger.io/support
-// @contact.email  support@support
+// @contact.name  Support
+// @contact.url   http://www.swagger.io/support
+// @contact.email support@support
 
-// @license.name  Apache 2.0
-// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
+// @license.name Apache 2.0
+// @license.url  http://www.apache.org/licenses/LICENSE-2.0.html
 
-// @BasePath  /
+// @BasePath /
 
 func main() {
 

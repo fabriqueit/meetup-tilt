@@ -13,13 +13,13 @@ type PageInput struct {
 }
 
 // GetPage godoc
-// @Summary 		List pages
+// @Summary     List all pages
 // @Description get pages
-// @Tags 				pages
-// @Accept 			json
-// @Produce 		json
-// @Success     200  {array}   models.Page
-// @Router 			/pages [get]
+// @Tags        pages
+// @Accept      json
+// @Produce     json
+// @Success     200 {array} models.Page
+// @Router      /pages [get]
 func GetPage(c *gin.Context) {
 	var pages []models.Page
 	models.DB.Find(&pages)
@@ -28,15 +28,15 @@ func GetPage(c *gin.Context) {
 }
 
 // PostPage godoc
-// @Summary 		Create an awsome page
+// @Summary     Create an awsome page
 // @Description post an page
-// @Tags 				pages
-// @Accept 			json
-// @Produce 		json
-// @Param      	body   body   PageInput  true  "Page"
-// @Success 		201  {int}  http.StatusCreated
-// @Failure     400  {int}  http.StatusBadRequest
-// @Router 			/pages [post]
+// @Tags        pages
+// @Accept      json
+// @Produce     json
+// @Param       body body  PageInput true "Page"
+// @Success     201  {int} http.StatusCreated
+// @Failure     400  {int} http.StatusBadRequest
+// @Router      /pages [post]
 func PostPage(c *gin.Context) {
 	// Validate input
 	var input PageInput
@@ -53,15 +53,15 @@ func PostPage(c *gin.Context) {
 }
 
 // GetPageByTitle godoc
-// @Summary 		Show a page
+// @Summary     Show a page
 // @Description get page by Title
-// @Tags 				pages
-// @Accept 			json
-// @Produce 		json
-// @Param      	title   path   string  true  "Page title"
-// @Success     200  {object}  models.Page
-// @Failure     404  {int}  http.StatusNotFound
-// @Router 			/pages/{title} [get]
+// @Tags        pages
+// @Accept      json
+// @Produce     json
+// @Param       title path     string true "Page title"
+// @Success     200   {object} models.Page
+// @Failure     404   {int}    http.StatusNotFound
+// @Router      /pages/{title} [get]
 func GetPageByTitle(c *gin.Context) {
 	var page models.Page
 
@@ -74,15 +74,15 @@ func GetPageByTitle(c *gin.Context) {
 }
 
 // DeletePage godoc
-// @Summary 		Delete a page
+// @Summary     Delete a page
 // @Description delete a page
-// @Tags 				pages
-// @Accept 			json
-// @Produce 		json
-// @Param      	title   path      string  true  "Page Title"
-// @Success     200  {object}  models.Page
-// @Failure     400  {int}  http.StatusBadRequest
-// @Router 			/pages/{title} [delete]
+// @Tags        pages
+// @Accept      json
+// @Produce     json
+// @Param       title path     string true "Page Title"
+// @Success     200   {object} models.Page
+// @Failure     400   {int}    http.StatusBadRequest
+// @Router      /pages/{title} [delete]
 func DeletePage(c *gin.Context) {
 	var page models.Page
 
@@ -97,16 +97,16 @@ func DeletePage(c *gin.Context) {
 }
 
 // PatchPage godoc
-// @Summary 		Update a page
+// @Summary     Update a page
 // @Description update a page
-// @Tags 				pages
-// @Accept 			json
-// @Produce 		json
-// @Param      	title     path      string  true  "Page ID"
-// @Param      	body   body   PageInput  true  "Page"
-// @Success     200  {object}  models.Page
-// @Failure     500  {int}  http.StatusBadRequest
-// @Router 			/pages/{title} [patch]
+// @Tags        pages
+// @Accept      json
+// @Produce     json
+// @Param       title path     string    true "Page ID"
+// @Param       body  body     PageInput true "Page"
+// @Success     200   {object} models.Page
+// @Failure     500   {int}    http.StatusBadRequest
+// @Router      /pages/{title} [patch]
 func PatchPage(c *gin.Context) {
 	var page models.Page
 
@@ -128,16 +128,16 @@ func PatchPage(c *gin.Context) {
 }
 
 // PutPage godoc
-// @Summary 		Update a page
+// @Summary     Update a page
 // @Description update a page
-// @Tags 				pages
-// @Accept 			json
-// @Produce 		json
-// @Param      	title   path      string  true  "Page Title"
-// @Param      	body body   PageInput  true  "Page"
-// @Success     200  {object}  models.Page
-// @Failure     400  {int}  http.StatusBadRequest
-// @Router 			/pages/{title} [put]
+// @Tags        pages
+// @Accept      json
+// @Produce     json
+// @Param       title path     string    true "Page Title"
+// @Param       body  body     PageInput true "Page"
+// @Success     200   {object} models.Page
+// @Failure     400   {int}    http.StatusBadRequest
+// @Router      /pages/{title} [put]
 func PutPage(c *gin.Context) {
 	var page models.Page
 

@@ -37,7 +37,7 @@ const docTemplate = `{
                 "tags": [
                     "pages"
                 ],
-                "summary": "List pages",
+                "summary": "List all pages",
                 "responses": {
                     "200": {
                         "description": "OK",

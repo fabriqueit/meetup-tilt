@@ -53,7 +53,7 @@ paths:
             items:
               $ref: '#/definitions/models.Page'
             type: array
-      summary: List pages
+      summary: List all pages
       tags:
       - pages
     post:
